@@ -1,8 +1,7 @@
 #ifndef PERSONALCHARACTER_H
 #define PERSONALCHARACTER_H
 
-#endif // PERSONALCHARACTER_H
-#include <character.h>
+#include "character.h"
 #include <QObject>
 #include <QList>
 
@@ -135,3 +134,4 @@ signals:
 
 
 };
+#endif // PERSONALCHARACTER_H

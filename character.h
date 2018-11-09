@@ -2,7 +2,7 @@
 #define CHARACTER_H
 #include <memory>
 using namespace std;
-#endif // CHARACTER_H
+
 class Character{
 
 
@@ -18,3 +18,4 @@ private:
     unique_ptr<personalCharacter> chara_ptr;
 
 };
+#endif // CHARACTER_H
