@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "character.h"
-#include "personalcharacter.h"
+
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -9,7 +8,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //personalCharacter *personalChar = new personalCharacter();
+    newCharacter = new Character();
+    //newCharacter->connectUi(ui);
 
 
 
@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->d12Button, SIGNAL(clicked(bool)), this, SLOT(onD12Clicked()));
     connect(ui->d20Button, SIGNAL(clicked(bool)), this, SLOT(onD20Clicked()));
     connect(ui->d100Button, SIGNAL(clicked(bool)), this, SLOT(onD100Clicked()));
-    //connect(ui->saveCharacterButton, SIGNAL(clicked(bool)), personalChar, SLOT(onSaveCharacterSelected(setCharacterName(ui->characterNameLineEdit->text()))));
+    connect(ui->saveCharacterButton, SIGNAL(clicked(bool)), this, SLOT(onSaveCharacterSelected()));
 //    connect(ui->saveCharacterButton, SIGNAL(clicked(bool)), this, SLOT(onSaveCharacterSelected()));
 //    connect(character, SIGNAL(setCharacterName("Hello world")), this, SLOT(onSaveCharacterSelected()));
 
@@ -92,6 +92,7 @@ void MainWindow::onLoadCharacterSelected()
 void MainWindow::onSaveCharacterSelected()
 {
 //    connect(character, SIGNAL(clicked(bool)), character, SLOT(onSaveCharacterSelected(setCharacterName(ui->characterNameLineEdit->text()))));
+    newCharacter->setCharacterName(ui->characterNameLineEdit->text());
 
 
 }
