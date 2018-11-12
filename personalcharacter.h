@@ -9,7 +9,8 @@ class Character::personalCharacter : public QObject
 {
     Q_OBJECT
 public:
-    personalCharacter();
+    personalCharacter(){}
+    void connectUi(Ui::MainWindow*);
 private:
     QString characterName;
     QString playerName;
