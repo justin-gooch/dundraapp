@@ -27,12 +27,27 @@ public slots:
     void onNewCharacterSelected();
     void onLoadCharacterSelected();
     void onSaveCharacterSelected();
-    void onAboutSelected();
+    void onClearButtonSelected();
+    void addItemToInventory();
+    void saveAbilityScores();
+    void deleteInventoryItem();
+    void saveCombatOption();
+    void deleteCombatOption();
+    void saveSavingThrows();
+    void saveConditionalModifier();
+    void deleteConditionalModifier();
+    void saveFeat();
+    void deleteFeat();
+    void saveLanguage();
+    void deleteLanguage();
+    void saveRacialClassFeature();
+    void deleteRacialClassFeature();
 
 
 private:
     Ui::MainWindow *ui;
     Character* newCharacter;
 };
+
 
 #endif // MAINWINDOW_H
