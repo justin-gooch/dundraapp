@@ -2,7 +2,13 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QtWidgets>
+#include <QFile>
+#include <QFileDialog>
 #include "character.h"
+#include <sqlite.h>
+
+
 
 namespace Ui {
 class MainWindow;
@@ -42,11 +48,19 @@ public slots:
     void deleteLanguage();
     void saveRacialClassFeature();
     void deleteRacialClassFeature();
+    void saveGrappleModifier();
+    void saveArmor();
+    void saveFile();
+    void loadFile();
+    void saveMagicItemsWorn();
+    void saveToDB();
 
 
 private:
+    QAction *saveFileSelect;
     Ui::MainWindow *ui;
     Character* newCharacter;
+    Sqlite *sqlite;
 };
 
 

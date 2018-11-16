@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -27,12 +27,14 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    character.cpp
+    character.cpp \
+    sqlite.cpp
 
 HEADERS += \
         mainwindow.h \
     character.h \
-    personalcharacter.h
+    personalcharacter.h \
+    sqlite.h
 
 FORMS += \
         mainwindow.ui

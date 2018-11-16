@@ -67,6 +67,8 @@ public:
     QString getInitiativeModifier();
     void setXp(QString xp);
     QString getXp();
+    void setMoney(QString money);
+    QString getMoney();
 
 
     void addCombatOption(combatOption);
@@ -209,6 +211,93 @@ public:
     void setWillMagicModifier(QString fortitudeTotal);
     void setWillMiscModifier(QString fortitudeTotal);
     void setWillTempModifier(QString fortitudeTotal);
+
+
+    QString getGrappleModifierTotal();
+    QString getGrappleModifierBaseAttackBonus();
+    QString getGrappleModifierStrengthModifier();
+    QString getGrappleModifierSizeModifier();
+    QString getGrappleModifierMiscModifier();
+
+    void setGrappleModifierTotal(QString grappleModifierTotal);
+    void setGrappleModifierBaseAttackBonus(QString grappleModifierBaseAttackBonus);
+    void setGrappleModifierStrengthModifier(QString grappleModifierStrengthModifier);
+    void setGrappleModifierSizeModifier(QString grappleModifierSizeModifier);
+    void setGrappleModifierMiscModifier(QString grappleModifierMiscModifier);
+
+
+
+    QString getArmorTotal();
+    QString getArmorBonus();
+    QString getArmorShieldBonus();
+    QString getArmorDexModifier();
+    QString getArmorSizeModifier();
+    QString getArmorNaturalModifier();
+    QString getArmorDeflectionModifier();
+    QString getArmorMiscellaneousModifier();
+    QString getArmorTouchAC();
+    QString getArmorFlatFootedAC();
+    QString getArmorWorn();
+    QString getArmorMaxDex();
+    QString getArmorCheckPenalty();
+    QString getArmorWeight();
+    QString getArmorShieldCarried();
+    QString getArmorShieldMaxDex();
+    QString getArmorShieldCheckPenalty();
+    QString getArmorShieldWeight();
+
+    void setArmorTotal(QString armorTotal);
+    void setArmorBonus(QString armorBonus);
+    void setArmorShieldBonus(QString armorShieldBonus);
+    void setArmorDexModifier(QString armorDexModifier);
+    void setArmorSizeModifier(QString armorSizeModifier);
+    void setArmorNaturalModifier(QString armorNaturalModifier);
+    void setArmorDeflectionModifier(QString armorDeflectionModifier);
+    void setArmorMiscellaneousModifier(QString armorMiscellaneousModifier);
+    void setArmorTouchAC(QString armorTouchAC);
+    void setArmorFlatFootedAC(QString armorFlatFootedAC);
+    void setArmorWorn(QString armorWorn);
+    void setArmorMaxDex(QString armorMaxDex);
+    void setArmorCheckPenalty(QString armorCheckPenalty);
+    void setArmorWeight(QString armorWeight);
+    void setArmorShieldCarried(QString armorShieldCarried);
+    void setArmorShieldMaxDex(QString armorShieldMaxDex);
+    void setArmorShieldCheckPenalty(QString armorShieldCheckPenalty);
+    void setArmorShieldWeight(QString armorShieldWeight);
+
+    QString getHeadMagicItem();
+    QString getEyesMagicItem();
+    QString getNeckMagicItem();
+    QString getShouldersMagicItem();
+    QString getRing1MagicItem();
+    QString getRing2MagicItem();
+    QString getHandsMagicItem();
+    QString getArmsWristsMagicItem();
+    QString getBodyMagicItem();
+    QString getTorsoMagicItem();
+    QString getWaistMagicItem();
+    QString getFeetMagicItem();
+
+
+
+    void setHeadMagicItem(QString headMagicItem);
+    void setEyesMagicItem(QString eyesMagicItem);
+    void setNeckMagicItem(QString neckMagicItem);
+    void setShouldersMagicItem(QString shouldersMagicItem);
+    void setRing1MagicItem(QString ring1MagicItem);
+    void setRing2MagicItem(QString ring2MagicItem);
+    void setHandsMagicItem(QString handsMagicItem);
+    void setArmsWristsMagicItem(QString armsWristsMagicItem);
+    void setBodyMagicItem(QString bodyMagicItem);
+    void setTorsoMagicItem(QString torsoMagicItem);
+    void setWaistMagicItem(QString waistMagicItem);
+    void setFeetMagicItem(QString feetMagicItem);
+
+    void setCharacterId(int id);
+    int getCharacterId();
+
+
+
 
 private:
     class personalCharacter;

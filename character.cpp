@@ -155,7 +155,14 @@ QString Character::getXp()
 {
     return chara_ptr->getXp();
 }
-
+void Character::setMoney(QString money)
+{
+	chara_ptr->setMoney(money);
+}
+QString Character::getMoney()
+{
+	return chara_ptr->getMoney();
+}
 
 
 
@@ -696,3 +703,302 @@ void Character::setWillTempModifier(QString willTempModifier)
 {
     chara_ptr->setWillTempModifier(willTempModifier);
 }
+
+
+QString Character::getGrappleModifierTotal()
+{
+    return chara_ptr->getGrappleModifierTotal();
+}
+QString Character::getGrappleModifierBaseAttackBonus()
+{
+    return chara_ptr->getGrappleModifierBaseAttackBonus();
+}
+QString Character::getGrappleModifierStrengthModifier()
+{
+    return chara_ptr->getGrappleModifierStrengthModifier();
+}
+QString Character::getGrappleModifierSizeModifier()
+{
+    return chara_ptr->getGrappleModifierSizeModifier();
+}
+QString Character::getGrappleModifierMiscModifier()
+{
+    return chara_ptr->getGrappleModifierMiscModifier();
+}
+
+void Character::setGrappleModifierTotal(QString grappleModifierTotal)
+{
+    chara_ptr->setGrappleModifierTotal(grappleModifierTotal);
+}
+void Character::setGrappleModifierBaseAttackBonus(QString grappleModifierBaseAttackBonus)
+{
+    chara_ptr->setGrappleModifierBaseAttackBonus(grappleModifierBaseAttackBonus);
+}
+void Character::setGrappleModifierStrengthModifier(QString grappleModifierStrengthModifier)
+{
+    chara_ptr->setGrappleModifierStrengthModifier(grappleModifierStrengthModifier);
+}
+void Character::setGrappleModifierSizeModifier(QString grappleModifierSizeModifier)
+{
+    chara_ptr->setGrappleModifierSizeModifier(grappleModifierSizeModifier);
+}
+void Character::setGrappleModifierMiscModifier(QString grappleModifierMiscModifier)
+{
+    chara_ptr->setGrappleModifierMiscModifier(grappleModifierMiscModifier);
+}
+
+
+QString Character::getArmorTotal()
+{
+    return chara_ptr->getArmorTotal();
+}
+QString Character::getArmorBonus()
+{
+    return chara_ptr->getArmorBonus();
+}
+QString Character::getArmorShieldBonus()
+{
+    return chara_ptr->getArmorShieldBonus();
+}
+QString Character::getArmorDexModifier()
+{
+    return chara_ptr->getArmorDexModifier();
+}
+QString Character::getArmorSizeModifier()
+{
+    return chara_ptr->getArmorSizeModifier();
+}
+QString Character::getArmorNaturalModifier()
+{
+    return chara_ptr->getArmorNaturalModifier();
+}
+QString Character::getArmorDeflectionModifier()
+{
+    return chara_ptr->getArmorDeflectionModifier();
+}
+QString Character::getArmorMiscellaneousModifier()
+{
+    return chara_ptr->getArmorMiscellaneousModifier();
+}
+QString Character::getArmorTouchAC()
+{
+    return chara_ptr->getArmorTouchAC();
+}
+QString Character::getArmorFlatFootedAC()
+{
+    return chara_ptr->getArmorFlatFootedAC();
+}
+QString Character::getArmorWorn()
+{
+    return chara_ptr->getArmorWorn();
+}
+QString Character::getArmorMaxDex()
+{
+    return chara_ptr->getArmorMaxDex();
+}
+QString Character::getArmorCheckPenalty()
+{
+    return chara_ptr->getArmorCheckPenalty();
+}
+QString Character::getArmorWeight()
+{
+    return chara_ptr->getArmorWeight();
+}
+QString Character::getArmorShieldCarried()
+{
+    return chara_ptr->getArmorShieldCarried();
+}
+QString Character::getArmorShieldMaxDex()
+{
+    return chara_ptr->getArmorShieldMaxDex();
+}
+QString Character::getArmorShieldCheckPenalty()
+{
+    return chara_ptr->getArmorShieldCheckPenalty();
+}
+QString Character::getArmorShieldWeight()
+{
+    return chara_ptr->getArmorShieldWeight();
+}
+void Character::setArmorTotal(QString armorTotal)
+{
+    chara_ptr->setArmorTotal(armorTotal);
+}
+void Character::setArmorBonus(QString armorBonus)
+{
+    chara_ptr->setArmorBonus(armorBonus);
+}
+void Character::setArmorShieldBonus(QString armorShieldBonus)
+{
+    chara_ptr->setArmorShieldBonus(armorShieldBonus);
+}
+void Character::setArmorDexModifier(QString armorDexModifier)
+{
+    chara_ptr->setArmorDexModifier(armorDexModifier);
+}
+void Character::setArmorSizeModifier(QString armorSizeModifier)
+{
+    chara_ptr->setArmorSizeModifier(armorSizeModifier);
+}
+void Character::setArmorNaturalModifier(QString armorNaturalModifier)
+{
+    chara_ptr->setArmorNaturalModifier(armorNaturalModifier);
+}
+void Character::setArmorDeflectionModifier(QString armorDeflectionModifier)
+{
+    chara_ptr->setArmorDeflectionModifier(armorDeflectionModifier);
+}
+void Character::setArmorMiscellaneousModifier(QString armorMiscellaneousModifier)
+{
+    chara_ptr->setArmorMiscellaneousModifier(armorMiscellaneousModifier);
+}
+void Character::setArmorTouchAC(QString armorTouchAC)
+{
+    chara_ptr->setArmorTouchAC(armorTouchAC);
+}
+void Character::setArmorFlatFootedAC(QString armorFlatFootedAC)
+{
+    chara_ptr->setArmorFlatFootedAC(armorFlatFootedAC);
+}
+void Character::setArmorWorn(QString armorFlatFootedAC)
+{
+    chara_ptr->setArmorWorn(armorFlatFootedAC);
+}
+void Character::setArmorMaxDex(QString armorMaxDex)
+{
+    chara_ptr->setArmorMaxDex(armorMaxDex);
+}
+void Character::setArmorCheckPenalty(QString armorCheckPenalty)
+{
+    chara_ptr->setArmorCheckPenalty(armorCheckPenalty);
+}
+void Character::setArmorWeight(QString armorWeight)
+{
+    chara_ptr->setArmorWeight(armorWeight);
+}
+void Character::setArmorShieldCarried(QString armorShieldCarried)
+{
+    chara_ptr->setArmorShieldCarried(armorShieldCarried);
+}
+void Character::setArmorShieldMaxDex(QString armorShieldMaxDex)
+{
+    chara_ptr->setArmorShieldMaxDex(armorShieldMaxDex);
+}
+void Character::setArmorShieldCheckPenalty(QString armorShieldCheckPenalty)
+{
+    chara_ptr->setArmorShieldCheckPenalty(armorShieldCheckPenalty);
+}
+void Character::setArmorShieldWeight(QString armorShieldWeight)
+{
+    chara_ptr->setArmorShieldWeight(armorShieldWeight);
+}
+
+QString Character::getHeadMagicItem()
+{
+	return chara_ptr->getHeadMagicItem();
+}
+QString Character::getEyesMagicItem()
+{
+	return chara_ptr->getEyesMagicItem();
+}
+QString Character::getNeckMagicItem()
+{
+	return chara_ptr->getNeckMagicItem();
+}
+QString Character::getShouldersMagicItem()
+{
+	return chara_ptr->getShouldersMagicItem();
+}
+QString Character::getRing1MagicItem()
+{
+	return chara_ptr->getRing1MagicItem();
+}
+QString Character::getRing2MagicItem()
+{
+	return chara_ptr->getRing2MagicItem();
+}
+QString Character::getHandsMagicItem()
+{
+	return chara_ptr->getHandsMagicItem();
+}
+QString Character::getArmsWristsMagicItem()
+{
+	return chara_ptr->getArmsWristsMagicItem();
+}
+QString Character::getBodyMagicItem()
+{
+	return chara_ptr->getBodyMagicItem();
+}
+QString Character::getTorsoMagicItem()
+{
+	return chara_ptr->getTorsoMagicItem();
+}
+QString Character::getWaistMagicItem()
+{
+	return chara_ptr->getWaistMagicItem();
+}
+QString Character::getFeetMagicItem()
+{
+	return chara_ptr->getFeetMagicItem();
+}
+
+
+void Character::setHeadMagicItem(QString headMagicItem)
+{
+	chara_ptr->setHeadMagicItem(headMagicItem);
+}
+void Character::setEyesMagicItem(QString eyesMagicItem)
+{
+	chara_ptr->setEyesMagicItem(eyesMagicItem);
+}
+void Character::setNeckMagicItem(QString neckMagicItem)
+{
+	chara_ptr->setNeckMagicItem(neckMagicItem);
+}
+void Character::setShouldersMagicItem(QString shouldersMagicItem)
+{
+	chara_ptr->setShouldersMagicItem(shouldersMagicItem);
+}
+void Character::setRing1MagicItem(QString ring1MagicItem)
+{
+	chara_ptr->setRing1MagicItem(ring1MagicItem);
+}
+void Character::setRing2MagicItem(QString ring2MagicItem)
+{
+	chara_ptr->setRing2MagicItem(ring2MagicItem);
+}
+void Character::setHandsMagicItem(QString handsMagicItem)
+{
+	chara_ptr->setHandsMagicItem(handsMagicItem);
+}
+void Character::setArmsWristsMagicItem(QString armsWristsMagicItem)
+{
+	chara_ptr->setArmsWristsMagicItem(armsWristsMagicItem);
+}
+void Character::setBodyMagicItem(QString bodyMagicItem)
+{
+	chara_ptr->setBodyMagicItem(bodyMagicItem);
+}
+void Character::setTorsoMagicItem(QString torsoMagicItem)
+{
+	chara_ptr->setTorsoMagicItem(torsoMagicItem);
+}
+void Character::setWaistMagicItem(QString waistMagicItem)
+{
+	chara_ptr->setWaistMagicItem(waistMagicItem);
+}
+void Character::setFeetMagicItem(QString feetMagicItem)
+{
+	chara_ptr->setFeetMagicItem(feetMagicItem);
+}
+
+void Character::setCharacterId(int id)
+{
+    chara_ptr->setCharacterId(id);
+}
+
+int Character::getCharacterId()
+{
+    return chara_ptr->getCharacterId();
+}
+

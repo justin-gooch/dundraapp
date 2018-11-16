@@ -15,6 +15,7 @@ public:
     void connectUi(Ui::MainWindow*);
 private:
 
+    int characterId = 0;
     QString characterName;
     QString playerName;
     QString characterClass;
@@ -31,6 +32,7 @@ private:
     QString speed;
     QString initiativeModifier;
     QString xp;
+    QString money;
 
     QString strengthTotal;
     QString strengthScorePlusAbilityMod;
@@ -87,6 +89,47 @@ private:
     QString willMagicModifier;
     QString willMiscModifier;
     QString willTempModifier;
+
+
+    QString grappleModifierTotal;
+    QString grappleModifierBaseAttackBonus;
+    QString grappleModifierStrengthModifier;
+    QString grappleModifierSizeModifier;
+    QString grappleModifierMiscModifier;
+
+
+    QString armorTotal;
+    QString armorBonus;
+    QString armorShieldBonus;
+    QString armorDexModifier;
+    QString armorSizeModifier;
+    QString armorNaturalModifier;
+    QString armorDeflectionModifier;
+    QString armorMiscellaneousModifier;
+    QString armorTouchAC;
+    QString armorFlatFootedAC;
+    QString armorWorn;
+    QString armorMaxDex;
+    QString armorCheckPenalty;
+    QString armorWeight;
+    QString armorShieldCarried;
+    QString armorShieldMaxDex;
+    QString armorShieldCheckPenalty;
+    QString armorShieldWeight;
+
+
+    QString headMagicItem;
+    QString eyesMagicItem;
+    QString neckMagicItem;
+    QString shouldersMagicItem;
+    QString ring1MagicItem;
+    QString ring2MagicItem;
+    QString handsMagicItem;
+    QString armsWristsMagicItem;
+    QString bodyMagicItem;
+    QString torsoMagicItem;
+    QString waistMagicItem;
+    QString feetMagicItem;
 
 
 
@@ -153,7 +196,7 @@ public slots:
     }
     QString getCharacterAlignment()
     {
-        return this->characterAlignment;
+       return this->characterAlignment;
     }
     void setCharacterReligion(QString characterReligion)
     {
@@ -226,6 +269,14 @@ public slots:
     QString getXp()
     {
         return this->xp;
+    }
+    void setMoney(QString money)
+    {
+	    this->money=money;
+    }
+    QString getMoney()
+    {
+	    return this->money;
     }
 
 
@@ -760,9 +811,301 @@ public slots:
     }
 
 
+    QString getGrappleModifierTotal()
+    {
+        return this->grappleModifierTotal;
+    }
+    QString getGrappleModifierBaseAttackBonus()
+    {
+        return this->grappleModifierBaseAttackBonus;
+    }
+    QString getGrappleModifierStrengthModifier()
+    {
+        return this->grappleModifierStrengthModifier;
+    }
+    QString getGrappleModifierSizeModifier()
+    {
+        return this->grappleModifierSizeModifier;
+    }
+    QString getGrappleModifierMiscModifier()
+    {
+        return this->grappleModifierMiscModifier;
+    }
+
+    void setGrappleModifierTotal(QString grappleModifierTotal)
+    {
+        this->grappleModifierTotal = grappleModifierTotal;
+    }
+    void setGrappleModifierBaseAttackBonus(QString grappleModifierBaseAttackBonus)
+    {
+        this->grappleModifierBaseAttackBonus = grappleModifierBaseAttackBonus;
+    }
+    void setGrappleModifierStrengthModifier(QString grappleModifierStrengthModifier)
+    {
+        this->grappleModifierStrengthModifier = grappleModifierStrengthModifier;
+    }
+    void setGrappleModifierSizeModifier(QString grappleModifierSizeModifier)
+    {
+        this->grappleModifierSizeModifier = grappleModifierSizeModifier;
+    }
+    void setGrappleModifierMiscModifier(QString grappleModifierMiscModifier)
+    {
+        this->grappleModifierMiscModifier = grappleModifierMiscModifier;
+    }
+
+    QString getArmorTotal()
+    {
+        return this->armorTotal;
+    }
+    QString getArmorBonus()
+    {
+        return this->armorBonus;
+    }
+
+    QString getArmorShieldBonus()
+    {
+        return this->armorShieldBonus;
+    }
+    QString getArmorDexModifier()
+    {
+        return this->armorDexModifier;
+    }
+    QString getArmorSizeModifier()
+    {
+        return this->armorSizeModifier;
+    }
+    QString getArmorNaturalModifier()
+    {
+        return this->armorNaturalModifier;
+    }
+    QString getArmorDeflectionModifier()
+    {
+        return this->armorDeflectionModifier;
+    }
+    QString getArmorMiscellaneousModifier()
+    {
+        return this->armorMiscellaneousModifier;
+    }
+    QString getArmorTouchAC()
+    {
+        return this->armorTouchAC;
+    }
+    QString getArmorFlatFootedAC()
+    {
+        return this->armorFlatFootedAC;
+    }
+    QString getArmorWorn()
+    {
+        return this->armorWorn;
+    }
+    QString getArmorMaxDex()
+    {
+        return this->armorMaxDex;
+    }
+    QString getArmorCheckPenalty()
+    {
+        return this->armorCheckPenalty;
+    }
+    QString getArmorWeight()
+    {
+        return this->armorWeight;
+    }
+    QString getArmorShieldCarried()
+    {
+        return this->armorShieldCarried;
+    }
+    QString getArmorShieldMaxDex()
+    {
+        return this->armorShieldMaxDex;
+    }
+    QString getArmorShieldCheckPenalty()
+    {
+        return this->armorShieldCheckPenalty;
+    }
+    QString getArmorShieldWeight()
+    {
+        return this->armorShieldWeight;
+    }
+    void setArmorTotal(QString armorTotal)
+    {
+        this->armorTotal = armorTotal;
+    }
+    void setArmorBonus(QString armorBonus)
+    {
+        this->armorBonus = armorBonus;
+    }
+    void setArmorShieldBonus(QString armorShieldBonus)
+    {
+        this->armorShieldBonus = armorShieldBonus;
+    }
+    void setArmorDexModifier(QString armorDexModifier)
+    {
+        this->armorDexModifier = armorDexModifier;
+    }
+    void setArmorSizeModifier(QString armorSizeModifier)
+    {
+        this->armorSizeModifier = armorSizeModifier;
+    }
+    void setArmorNaturalModifier(QString armorNaturalModifier)
+    {
+        this->armorNaturalModifier = armorNaturalModifier;
+    }
+    void setArmorDeflectionModifier(QString armorDeflectionModifier)
+    {
+        this->armorDeflectionModifier = armorDeflectionModifier;
+    }
+    void setArmorMiscellaneousModifier(QString armorMiscellaneousModifier)
+    {
+        this->armorMiscellaneousModifier = armorMiscellaneousModifier;
+    }
+    void setArmorTouchAC(QString armorTouchAC)
+    {
+        this->armorTouchAC = armorTouchAC;
+    }
+    void setArmorFlatFootedAC(QString armorFlatFootedAC)
+    {
+        this->armorFlatFootedAC = armorFlatFootedAC;
+    }
+    void setArmorWorn(QString armorFlatFootedAC)
+    {
+        this->armorFlatFootedAC = armorFlatFootedAC;
+    }
+    void setArmorMaxDex(QString armorMaxDex)
+    {
+        this->armorMaxDex = armorMaxDex;
+    }
+    void setArmorCheckPenalty(QString armorCheckPenalty)
+    {
+        this->armorCheckPenalty = armorCheckPenalty;
+    }
+    void setArmorWeight(QString armorWeight)
+    {
+        this->armorWeight = armorWeight;
+    }
+    void setArmorShieldCarried(QString armorShieldCarried)
+    {
+        this->armorShieldCarried = armorShieldCarried;
+    }
+    void setArmorShieldMaxDex(QString armorShieldMaxDex)
+    {
+        this->armorShieldMaxDex = armorShieldMaxDex;
+    }
+    void setArmorShieldCheckPenalty(QString armorShieldCheckPenalty)
+    {
+        this->armorShieldCheckPenalty = armorShieldCheckPenalty;
+    }
+    void setArmorShieldWeight(QString armorShieldWeight)
+    {
+        this->armorShieldWeight = armorShieldWeight;
+    }
 
 
+    QString getHeadMagicItem()
+    {
+	    return this->headMagicItem;
+    }
+    QString getEyesMagicItem()
+    {
+	    return this->eyesMagicItem;
+    }
+    QString getNeckMagicItem()
+    {
+	    return this->neckMagicItem;
+    }
+    QString getShouldersMagicItem()
+    {
+	    return this->shouldersMagicItem;
+    }
+    QString getRing1MagicItem()
+    {
+	    return this->ring1MagicItem;
+    }
+    QString getRing2MagicItem()
+    {
+	    return this->ring2MagicItem;
+    }
+    QString getHandsMagicItem()
+    {
+	    return this->handsMagicItem;
+    }
+    QString getArmsWristsMagicItem()
+    {
+	    return this->armsWristsMagicItem;
+    }
+    QString getBodyMagicItem()
+    {
+	    return this->bodyMagicItem;
+    }
+    QString getTorsoMagicItem()
+    {
+	    return this->torsoMagicItem;
+    }
+    QString getWaistMagicItem()
+    {
+	    return this->waistMagicItem;
+    }
+    QString getFeetMagicItem()
+    {
+	    return this->feetMagicItem;
+    }
 
+    void setHeadMagicItem(QString headMagicItem)
+    {
+	    this->headMagicItem=headMagicItem;
+    }
+    void setEyesMagicItem(QString eyesMagicItem)
+    {
+	    this->eyesMagicItem=eyesMagicItem;
+    }
+    void setNeckMagicItem(QString neckMagicItem)
+    {
+	    this->neckMagicItem=neckMagicItem;
+    }
+    void setShouldersMagicItem(QString shouldersMagicItem)
+    {
+	    this->shouldersMagicItem=shouldersMagicItem;
+    }
+    void setRing1MagicItem(QString ring1MagicItem)
+    {
+	    this->ring1MagicItem=ring1MagicItem;
+    }
+    void setRing2MagicItem(QString ring2MagicItem)
+    {
+	    this->ring2MagicItem=ring2MagicItem;
+    }
+    void setHandsMagicItem(QString handsMagicItem)
+    {
+	    this->handsMagicItem=handsMagicItem;
+    }
+    void setArmsWristsMagicItem(QString armsWristsMagicItem)
+    {
+	    this->armsWristsMagicItem=armsWristsMagicItem;
+    }
+    void setBodyMagicItem(QString bodyMagicItem)
+    {
+	    this->bodyMagicItem=bodyMagicItem;
+    }
+    void setTorsoMagicItem(QString torsoMagicItem)
+    {
+	    this->torsoMagicItem=torsoMagicItem;
+    }
+    void setWaistMagicItem(QString waistMagicItem)
+    {
+	    this->waistMagicItem=waistMagicItem;
+    }
+    void setFeetMagicItem(QString feetMagicItem)
+    {
+	    this->feetMagicItem=feetMagicItem;
+    }
 
+    void setCharacterId(int id)
+    {
+        this->characterId = id;
+    }
+
+    int getCharacterId()
+    {
+        return this->characterId;
+    }
 };
 #endif // PERSONALCHARACTER_H

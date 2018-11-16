@@ -9,6 +9,11 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     newCharacter = new Character();
+    QString path = "C:/Users/jgooch/Documents/db.sql";
+    sqlite = new Sqlite(path);
+
+
+
 
 
 
@@ -36,6 +41,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->deleteFeat, SIGNAL(clicked(bool)), this, SLOT(deleteFeat()));
     connect(ui->saveLanguage, SIGNAL(clicked(bool)), this, SLOT(saveLanguage()));
     connect(ui->deleteLanguage, SIGNAL(clicked(bool)), this, SLOT(deleteLanguage()));
+    connect(ui->saveGrappleModifier, SIGNAL(clicked(bool)), this, SLOT(saveGrappleModifier()));
+    connect(ui->actionexportCharacter, SIGNAL(triggered()), this, SLOT(saveFile()));
+    connect(ui->actionloadCharacter, SIGNAL(triggered()), this, SLOT(loadFile()));
+    connect(ui->actionSaveToDB, SIGNAL(triggered()), this, SLOT(saveToDB()));
+    connect(ui->saveMagicItem, SIGNAL(clicked(bool)), this, SLOT(saveMagicItemsWorn()));
 
 
 }
@@ -115,6 +125,7 @@ void MainWindow::onSaveCharacterSelected()
     newCharacter->setSpeed(ui->speedLineEdit->text());
     newCharacter->setInitiativeModifier(ui->initiativeModifierLineEdit->text());
     newCharacter->setXp(ui->xpLineEdit->text());
+    newCharacter->setMoney(ui->moneyLineEdit->text());
 
 
 
@@ -137,6 +148,7 @@ void MainWindow::onClearButtonSelected()
     ui->speedLineEdit->clear();
     ui->initiativeModifierLineEdit->clear();
     ui->xpLineEdit->clear();
+    ui->moneyLineEdit->clear();
 
 }
 
@@ -158,6 +170,7 @@ void MainWindow::onLoadCharacterSelected()
     ui->speedLineEdit->setText(newCharacter->getSpeed());
     ui->initiativeModifierLineEdit->setText(newCharacter->getInitiativeModifier());
     ui->xpLineEdit->setText(newCharacter->getXp());
+    ui->moneyLineEdit->setText(newCharacter->getMoney());
 }
 void MainWindow::addItemToInventory()
 {
@@ -402,4 +415,445 @@ void MainWindow::deleteRacialClassFeature()
         }
     }
 
+}
+
+void MainWindow::saveGrappleModifier()
+{
+    newCharacter->setGrappleModifierTotal(ui->grappleModifierTotal->text());
+    newCharacter->setGrappleModifierBaseAttackBonus(ui->grappleModifierBaseAttackBonus->text());
+    newCharacter->setGrappleModifierStrengthModifier(ui->grappleModifierStrengthModifier->text());
+    newCharacter->setGrappleModifierSizeModifier(ui->grappleModifierSizeModifier->text());
+    newCharacter->setGrappleModifierMiscModifier(ui->grappleModifierMiscModifier->text());
+}
+
+void MainWindow::saveArmor()
+{
+    newCharacter->setArmorTotal(ui->armorTotal->text());
+    newCharacter->setArmorBonus(ui->armorBonus->text());
+    newCharacter->setArmorShieldBonus(ui->armorShieldBonus->text());
+    newCharacter->setArmorDexModifier(ui->armorDexMod->text());
+    newCharacter->setArmorSizeModifier(ui->armorSizeMod->text());
+    newCharacter->setArmorNaturalModifier(ui->armorNaturalMod->text());
+    newCharacter->setArmorDeflectionModifier(ui->armorDeflectionMod->text());
+    newCharacter->setArmorMiscellaneousModifier(ui->armorMiscMod->text());
+    newCharacter->setArmorTouchAC(ui->armorTouchAc->text());
+    newCharacter->setArmorFlatFootedAC(ui->armorFlatFootedAC->text());
+    newCharacter->setArmorWorn(ui->armorWorn->text());
+    newCharacter->setArmorMaxDex(ui->armorMaxDex->text());
+    newCharacter->setArmorCheckPenalty(ui->armorCheckPenalty->text());
+    newCharacter->setArmorWeight(ui->armorWeight->text());
+    newCharacter->setArmorShieldCarried(ui->armorShieldCarried->text());
+    newCharacter->setArmorShieldMaxDex(ui->armorShieldMaxDex->text());
+    newCharacter->setArmorShieldCheckPenalty(ui->armorShieldCheckPenalty->text());
+    newCharacter->setArmorShieldWeight(ui->armorShieldWeight->text());
+}
+
+void MainWindow::saveFile()
+{
+    QString fileName = QFileDialog::getSaveFileName();
+    QFile jsonFile(fileName);
+    jsonFile.open(QIODevice::WriteOnly | QIODevice::Text);
+    QJsonObject playerCharacter;
+    playerCharacter.insert("CharacterName", newCharacter->getCharacterName());
+    playerCharacter.insert("playerName" , newCharacter->getPlayerName());
+    playerCharacter.insert("characterClass" , newCharacter->getCharacterClass());
+    playerCharacter.insert("characterRace" , newCharacter->getCharacterRace());
+    playerCharacter.insert("characterSize" , newCharacter->getCharacterSize());
+    playerCharacter.insert("characterGender" , newCharacter->getCharacterGender());
+    playerCharacter.insert("characterAlignment" , newCharacter->getCharacterAlignment());
+    playerCharacter.insert("characterReligion" , newCharacter->getCharacterReligion());
+    playerCharacter.insert("characterHeight" , newCharacter->getCharacterHeight());
+    playerCharacter.insert("characterWeight" , newCharacter->getCharacterWeight());
+    playerCharacter.insert("characterLooks" , newCharacter->getCharacterLooks());
+    playerCharacter.insert("baseAttackBonus" , newCharacter->getBaseAttackBonus());
+    playerCharacter.insert("hitPoints" , newCharacter->getHitPoints());
+    playerCharacter.insert("speed" , newCharacter->getSpeed());
+    playerCharacter.insert("initiativeModifier" , newCharacter->getInitiativeModifier());
+    playerCharacter.insert("xp" , newCharacter->getXp());
+    playerCharacter.insert("money" , newCharacter->getMoney());
+    playerCharacter.insert("armorTotal" , newCharacter->getArmorTotal());
+    playerCharacter.insert("armorBonus" , newCharacter->getArmorBonus());
+    playerCharacter.insert("armorShieldBonus" , newCharacter->getArmorShieldBonus());
+    playerCharacter.insert("armorDexModifier" , newCharacter->getArmorDexModifier());
+    playerCharacter.insert("armorSizeModifier" , newCharacter->getArmorSizeModifier());
+    playerCharacter.insert("armorNaturalModifier" , newCharacter->getArmorNaturalModifier());
+    playerCharacter.insert("armorDeflectionModifier" , newCharacter->getArmorDeflectionModifier());
+    playerCharacter.insert("armorMiscellaneousModifier" , newCharacter->getArmorMiscellaneousModifier());
+    playerCharacter.insert("armorTouchAC" , newCharacter->getArmorTouchAC());
+    playerCharacter.insert("armorFlatFootedAC" , newCharacter->getArmorFlatFootedAC());
+    playerCharacter.insert("armorWorn" , newCharacter->getArmorWorn());
+    playerCharacter.insert("armorMaxDex" , newCharacter->getArmorMaxDex());
+    playerCharacter.insert("armorCheckPenalty" , newCharacter->getArmorCheckPenalty());
+    playerCharacter.insert("armorWeight" , newCharacter->getArmorWeight());
+    playerCharacter.insert("armorShieldCarried" , newCharacter->getArmorShieldCarried());
+    playerCharacter.insert("armorMaxDex" , newCharacter->getArmorShieldMaxDex());
+    playerCharacter.insert("armorShieldCheckPenalty" , newCharacter->getArmorShieldCheckPenalty());
+    playerCharacter.insert("armorShieldWeight" , newCharacter->getArmorShieldWeight());
+    playerCharacter.insert("grappleModifierTotal" , newCharacter->getGrappleModifierTotal());
+    playerCharacter.insert("grappleModifierBaseAttackBonus" , newCharacter->getGrappleModifierBaseAttackBonus());
+    playerCharacter.insert("grappleModifierStrengthModifier" , newCharacter->getGrappleModifierStrengthModifier());
+    playerCharacter.insert("grappleModifierSizeModifier" , newCharacter->getGrappleModifierSizeModifier());
+    playerCharacter.insert("grappleModifierMiscModifier" , newCharacter->getGrappleModifierMiscModifier());
+    playerCharacter.insert("getFortitudeTotal" , newCharacter->getFortitudeTotal());
+    playerCharacter.insert("getFortitudeBaseSave" , newCharacter->getFortitudeBaseSave());
+    playerCharacter.insert("getFortitudeAbilityModifier" , newCharacter->getFortitudeAbilityModifier());
+    playerCharacter.insert("getFortitudeMagicModifier" , newCharacter->getFortitudeMagicModifier());
+    playerCharacter.insert("getFortitudeMiscModifier" , newCharacter->getFortitudeMiscModifier());
+    playerCharacter.insert("getFortitudeTempModifier" , newCharacter->getFortitudeTempModifier());
+    playerCharacter.insert("reflexTotal" , newCharacter->getReflexTotal());
+    playerCharacter.insert("reflexBaseSave" , newCharacter->getReflexBaseSave());
+    playerCharacter.insert("reflexAbilityModifier" , newCharacter->getReflexAbilityModifier());
+    playerCharacter.insert("reflexMagicModifier" , newCharacter->getReflexMagicModifier());
+    playerCharacter.insert("reflexMiscModifier" , newCharacter->getReflexMiscModifier());
+    playerCharacter.insert("reflexTempModifier" , newCharacter->getReflexTempModifier());
+    playerCharacter.insert("willTotal" , newCharacter->getWillTotal());
+    playerCharacter.insert("willBaseSave" , newCharacter->getWillBaseSave());
+    playerCharacter.insert("willAbilityModifier" , newCharacter->getWillAbilityModifier());
+    playerCharacter.insert("willMagicModifier" , newCharacter->getWillMagicModifier());
+    playerCharacter.insert("willMiscModifier" , newCharacter->getWillMiscModifier());
+    playerCharacter.insert("willTempModifier" , newCharacter->getWillTempModifier());
+    playerCharacter.insert("strengthTotal" , newCharacter->getStrengthTotal());
+    playerCharacter.insert("strengtScorePlusAbilityModifier" , newCharacter->getStrengthScorePlusAbilityMod());
+    playerCharacter.insert("strengthEnhancementBonus" , newCharacter->getStrengthEnhancementBonus());
+    playerCharacter.insert("strengthMiscBonus", newCharacter->getStrengthMiscBonus());
+    playerCharacter.insert("strengtMiscPenaltiesh" , newCharacter->getStrengthMiscPenalties());
+    playerCharacter.insert("strengthModifier" , newCharacter->getStrengthModifier());
+    playerCharacter.insert("dexterityTotal" , newCharacter->getDexterityTotal());
+    playerCharacter.insert("dexterityScorePlusAbilityModifier" , newCharacter->getDexterityScorePlusAbilityMod());
+    playerCharacter.insert("dexterityEnhancementBonus" , newCharacter->getDexterityEnhancementBonus());
+    playerCharacter.insert("dexterityMiscBonus" , newCharacter->getDexterityMiscBonus());
+    playerCharacter.insert("dexterityMiscPenalties" , newCharacter->getDexterityMiscPenalties());
+    playerCharacter.insert("dexterityModifier" , newCharacter->getDexterityModifier());
+    playerCharacter.insert("constitutionTotal" , newCharacter->getConstitutionTotal());
+    playerCharacter.insert("constitutionScorePlusAbilityModifier" , newCharacter->getConstitutionScorePlusAbilityMod());
+    playerCharacter.insert("constitutionEnhancementBonus" , newCharacter->getConstitutionEnhancementBonus());
+    playerCharacter.insert("constitutionMiscBonus" , newCharacter->getConstitutionMiscBonus());
+    playerCharacter.insert("constitutionMiscPenalties" , newCharacter->getConstitutionMiscPenalties());
+    playerCharacter.insert("constitutionModifier" , newCharacter->getConstitutionModifier());
+    playerCharacter.insert("intelligenceTotal" , newCharacter->getIntelligenceTotal());
+    playerCharacter.insert("intelligenceScorePlusAbilityModifier" , newCharacter->getIntelligenceScorePlusAbilityMod());
+    playerCharacter.insert("intelligenceEnhancementBonus" , newCharacter->getIntelligenceEnhancementBonus());
+    playerCharacter.insert("intelligenceMiscBonus" , newCharacter->getIntelligenceMiscBonus());
+    playerCharacter.insert("intelligenceMiscPenalties" , newCharacter->getIntelligenceMiscPenalties());
+    playerCharacter.insert("intelligenceModifier" , newCharacter->getIntelligenceModifier());
+    playerCharacter.insert("wisdomTotal" , newCharacter->getWisdomTotal());
+    playerCharacter.insert("wisdomScorePlusAbilityModifier" , newCharacter->getWisdomScorePlusAbilityMod());
+    playerCharacter.insert("wisdomEnhancementBonus" , newCharacter->getWisdomEnhancementBonus());
+    playerCharacter.insert("wisdomMiscBonus" , newCharacter->getWisdomMiscBonus());
+    playerCharacter.insert("wisdomMiscPenalties" , newCharacter->getWisdomMiscPenalties());
+    playerCharacter.insert("wisdomModifier" , newCharacter->getWisdomModifier());
+    playerCharacter.insert("charismaTotal" , newCharacter->getCharismaTotal());
+    playerCharacter.insert("charismaScorePlusAbilityModifier" , newCharacter->getCharismaScorePlusAbilityMod());
+    playerCharacter.insert("charismaEnhancementBonus" , newCharacter->getCharismaEnhancementBonus());
+    playerCharacter.insert("charismaMiscBonus" , newCharacter->getCharismaMiscBonus());
+    playerCharacter.insert("charismaMiscPenalties" , newCharacter->getCharismaMiscPenalties());
+    playerCharacter.insert("charismaModifier" , newCharacter->getCharismaModifier());
+    playerCharacter.insert("headMagicItem", newCharacter->getHeadMagicItem());
+    playerCharacter.insert("eyesMagicItem", newCharacter->getEyesMagicItem());
+    playerCharacter.insert("neckMagicItem", newCharacter->getNeckMagicItem());
+    playerCharacter.insert("shouldersMagicItem", newCharacter->getShouldersMagicItem());
+    playerCharacter.insert("ring1MagicItem", newCharacter->getRing1MagicItem());
+    playerCharacter.insert("ring2MagicItem", newCharacter->getRing2MagicItem());
+    playerCharacter.insert("handsMagicItem", newCharacter->getHandsMagicItem());
+    playerCharacter.insert("armsWristsMagicItem", newCharacter->getArmsWristsMagicItem());
+    playerCharacter.insert("bodyMagicItem", newCharacter->getBodyMagicItem());
+    playerCharacter.insert("torsoMagicItem", newCharacter->getTorsoMagicItem());
+    playerCharacter.insert("waistMagicItem", newCharacter->getWaistMagicItem());
+    playerCharacter.insert("feetMagicItem", newCharacter->getFeetMagicItem());
+    
+    
+    QJsonArray inventoryLists;
+    QList<inventory> iList = newCharacter->getInventoryList();
+
+    foreach(inventory iListItem, iList)
+    {
+        QJsonObject inventoryList;
+        inventoryList["item"] = iListItem.item;
+        inventoryList["location"] = iListItem.location;
+        inventoryList["weight"] = iListItem.weight;
+        qInfo() << "hello" << endl;
+        inventoryLists.append(inventoryList);
+    }
+    playerCharacter.insert("inventoryList", inventoryLists);
+
+    QJsonArray combatOptions;
+    QList<combatOption> cOptions = newCharacter->getCombatOptions();
+    foreach(combatOption cOption, cOptions)
+    {
+        QJsonObject combatOption;
+        combatOption["weapon"] = cOption.weapon;
+        combatOption["attackBonus"] = cOption.attackBonus;
+        combatOption["damage"] = cOption.damage;
+        combatOption["critical"] = cOption.critical;
+        combatOption["rangeIncrement"] = cOption.rangeIncrement;
+        combatOption["type"] = cOption.type;
+        combatOption["notesAmmo"] = cOption.notesAmmo;
+	combatOptions.append(combatOption);
+    }
+    playerCharacter.insert("combatOption", combatOptions);
+
+    QJsonArray conditionalModifiers;
+    QList<QString> cModifiers = newCharacter->getConditionalModifier();
+    foreach(QString cModifier, cModifiers)
+    {
+    	conditionalModifiers.append(cModifier);
+    }
+    playerCharacter.insert("conditionalModifiers", conditionalModifiers);
+
+
+    QJsonArray featItems;
+    QList<QString> fItems = newCharacter->getFeatList();
+    foreach(QString fItem, fItems)
+    {
+    	featItems.append(fItem);
+    }
+    playerCharacter.insert("featItems", featItems);
+
+    QJsonArray languageItems;
+    QList<QString> lItems = newCharacter->getLanguageList();
+    foreach(QString lItem, lItems)
+    {
+    	languageItems.append(lItem);
+    }
+    playerCharacter.insert("languageItems", languageItems);
+
+    QJsonArray racialClassFeatureItems;
+    QList<QString> rCFIs = newCharacter->getRacialClassFeatureList();
+    foreach(QString rCFI, rCFIs)
+    {
+    	racialClassFeatureItems.append(rCFI);
+    }
+    playerCharacter.insert("RacialClassFeatureItems", racialClassFeatureItems);
+
+
+
+
+    QJsonDocument doc(playerCharacter);
+    jsonFile.write(doc.toJson());
+    jsonFile.close();
+}
+
+void MainWindow::loadFile()
+{
+
+    QString fileName = QFileDialog::getOpenFileName();
+    qInfo() << fileName << endl;
+    QFile jsonFile(fileName);
+    jsonFile.open(QIODevice::ReadOnly | QIODevice::Text);
+    QString values = jsonFile.readAll();
+    qInfo() << values << endl;
+    jsonFile.close();
+    QJsonDocument doc = QJsonDocument::fromJson(values.toUtf8());
+    QJsonObject jObj = doc.object();
+    foreach(QString key, jObj.keys())
+    {
+        qInfo() << key << ":" << jObj[key] << endl;
+
+    }
+    newCharacter->setCharacterName(jObj["characterName"].toString());
+    newCharacter->setArmorBonus(jObj["armorBonus"].toString());
+    newCharacter->setArmorCheckPenalty(jObj["armorCheckPenalty"].toString());
+    newCharacter->setArmorDeflectionModifier(jObj["armorDeflectionModifier"].toString());
+    newCharacter->setArmorDexModifier(jObj["armorDexModifier"].toString());
+    newCharacter->setArmorFlatFootedAC(jObj["armorFlatFootedAC"].toString());
+    newCharacter->setArmorMaxDex(jObj["armorMaxDex"].toString());
+    newCharacter->setArmorMiscellaneousModifier(jObj["armorMiscellaneousModifier"].toString());
+    newCharacter->setArmorNaturalModifier(jObj["armorNaturalModifier"].toString());
+    newCharacter->setArmorShieldBonus(jObj["armorShieldBonus"].toString());
+    newCharacter->setArmorShieldCarried(jObj["armorShieldCarried"].toString());
+    newCharacter->setArmorShieldCheckPenalty(jObj["armorShieldCheckPenalty"].toString());
+    newCharacter->setArmorShieldWeight(jObj["armorShieldWeight"].toString());
+    newCharacter->setArmorSizeModifier(jObj["armorSizeModifier"].toString());
+    newCharacter->setArmorTotal(jObj["armorTotal"].toString());
+    newCharacter->setArmorTouchAC(jObj["armorTouchAC"].toString());
+    newCharacter->setArmorWeight(jObj["armorWeight"].toString());
+    newCharacter->setArmorWorn(jObj["armorWorn"].toString());
+    newCharacter->setBaseAttackBonus(jObj["baseAttackBonus"].toString());
+    newCharacter->setCharacterAlignment(jObj["characterAlignment"].toString());
+    newCharacter->setCharacterClass(jObj["characterClass"].toString());
+
+
+    newCharacter->setCharacterGender(jObj["characterGender"].toString());
+    newCharacter->setCharacterHeight(jObj["characterHeight"].toString());
+    newCharacter->setCharacterLooks(jObj["characterLooks"].toString());
+    newCharacter->setCharacterRace(jObj["characterRace"].toString());
+    newCharacter->setCharacterReligion(jObj["characterReligion"].toString());
+    newCharacter->setCharacterSize(jObj["characterSize"].toString());
+    newCharacter->setCharacterWeight(jObj["characterWeight"].toString());
+    newCharacter->setCharismaEnhancementBonus(jObj["charismaEnhancementBonus"].toString());
+    newCharacter->setCharismaMiscBonus(jObj["charismaMiscBonus"].toString());
+    newCharacter->setCharismaMiscPenalties(jObj["charismaMiscPenalties"].toString());
+    newCharacter->setCharismaModifier(jObj["charismaModifier"].toString());
+    newCharacter->setCharismaScorePlusAbilityMod(jObj["charismaScorePlusAbilityModifier"].toString());
+    newCharacter->setCharismaTotal(jObj["charismaTotal"].toString());
+    newCharacter->setConstitutionEnhancementBonus(jObj["constitutionEnhancementBonus"].toString());
+    newCharacter->setConstitutionMiscBonus(jObj["constitutionMiscBonusConstitutionMiscBonus"].toString());
+    newCharacter->setConstitutionMiscPenalties(jObj["constitutionMiscPenalties"].toString());
+    newCharacter->setConstitutionModifier(jObj["constitutionModifier"].toString());
+    newCharacter->setConstitutionScorePlusAbilityMod(jObj["constitutionScorePlusAbilityModifier"].toString());
+    newCharacter->setConstitutionTotal(jObj["constitutionTotal"].toString());
+    newCharacter->setDexterityEnhancementBonus(jObj["dexterityEnhancementBonus"].toString());
+    newCharacter->setDexterityMiscBonus(jObj["dexterityMiscBonus"].toString());
+    newCharacter->setDexterityMiscPenalties(jObj["dexterityMiscPenalties"].toString());
+    newCharacter->setDexterityModifier(jObj["dexterityModifier"].toString());
+    newCharacter->setDexterityScorePlusAbilityMod(jObj["dexterityScorePlusAbilityModifier"].toString());
+    newCharacter->setDexterityTotal(jObj["dexterityTotal"].toString());
+    newCharacter->setFortitudeAbilityModifier(jObj["fortitudeAbilityModifier"].toString());
+    newCharacter->setFortitudeBaseSave(jObj["fortitudeBaseSave"].toString());
+    newCharacter->setFortitudeMagicModifier(jObj["fortitudeMagicModifier"].toString());
+    newCharacter->setFortitudeMiscModifier(jObj["fortitudeMiscModifier"].toString());
+    newCharacter->setFortitudeTempModifier(jObj["fortitudeTempModifier"].toString());
+    newCharacter->setFortitudeTotal(jObj["fortitudeTotal"].toString());
+    newCharacter->setGrappleModifierBaseAttackBonus(jObj["grappleModifierBaseAttackBonus"].toString());
+    newCharacter->setGrappleModifierMiscModifier(jObj["grappleModifierMiscModifier"].toString());
+    newCharacter->setGrappleModifierSizeModifier(jObj["grappleModifierSizeModifier"].toString());
+    newCharacter->setGrappleModifierStrengthModifier(jObj["grappleModifierStrengthModifier"].toString());
+    newCharacter->setGrappleModifierTotal(jObj["grappleModifierTotal"].toString());
+    newCharacter->setHitPoints(jObj["hitPoints"].toString());
+    newCharacter->setInitiativeModifier(jObj["initiativeModifier"].toString());
+    newCharacter->setIntelligenceEnhancementBonus(jObj["intelligenceEnhancementBonus"].toString());
+    newCharacter->setIntelligenceMiscBonus(jObj["intelligenceMiscBonus"].toString());
+    newCharacter->setIntelligenceMiscPenalties(jObj["intelligenceMiscPenalties"].toString());
+    newCharacter->setIntelligenceModifier(jObj["intelligenceModifier"].toString());
+    newCharacter->setIntelligenceScorePlusAbilityMod(jObj["intelligenceScorePlusAbilityModifier"].toString());
+    newCharacter->setIntelligenceTotal(jObj["intelligenceTotal"].toString());
+    QJsonArray iListItems = jObj["inventoryList"].toArray();
+    for(int i=0; i< iListItems.size(); i++)
+    {
+        QJsonObject iListItem = iListItems[i].toObject();
+        inventory iItem = {iListItem["item"].toString(),
+                           iListItem["location"].toString(),
+                           iListItem["weight"].toString() };
+        newCharacter->addInventoryItem(iItem);
+    }
+
+    QJsonArray combatOptions = jObj["combatOption"].toArray();
+    for(int i=0; i<combatOptions.size(); i++)
+    {
+        QJsonObject cOption = combatOptions[i].toObject();
+        combatOption cOpt = {cOption["weapon"].toString(),
+                             cOption["attackBonus"].toString(),
+                             cOption["damage"].toString(),
+                             cOption["critical"].toString(),
+                             cOption["rangeIncrement"].toString(),
+                             cOption["type"].toString(),
+                             cOption["notesAmmo"].toString()};
+        newCharacter->addCombatOption(cOpt);
+    }
+
+    QJsonArray conditionalModifiers = jObj["conditionalModifiers"].toArray();
+    for(int i=0; i<conditionalModifiers.size(); i++)
+    {
+        QString cMod = conditionalModifiers[i].toString();
+        newCharacter->addConditionalModifier(cMod);
+    }
+
+
+    QJsonArray featsList = jObj["featItems"].toArray();
+    for(int i=0; i<featsList.size(); i++)
+    {
+        QString fList = featsList[i].toString();
+        newCharacter->addFeatItem(fList);
+    }
+
+    QJsonArray languageList = jObj["languageItems"].toArray();
+    for(int i=0; i<languageList.size(); i++)
+    {
+        QString lList = languageList[i].toString();
+        newCharacter->addLanguageItem(lList);
+    }
+
+    QJsonArray racialClassFeaturesList = jObj["RacialClassFeatureItems"].toArray();
+    for(int i=0; i<racialClassFeaturesList.size(); i++)
+    {
+        QString rCFL = racialClassFeaturesList[i].toString();
+        newCharacter->addRacialClassFeatureItem(rCFL);
+    }
+
+
+
+
+
+
+
+    newCharacter->setPlayerName(jObj["playerName"].toString());
+    newCharacter->setReflexAbilityModifier(jObj["reflexAbilityModifier"].toString());
+    newCharacter->setReflexBaseSave(jObj["reflexBaseSave"].toString());
+    newCharacter->setReflexMagicModifier(jObj["reflexMagicModifier"].toString());
+    newCharacter->setReflexMiscModifier(jObj["reflexMiscModifier"].toString());
+    newCharacter->setReflexTempModifier(jObj["reflexTempModifier"].toString());
+    newCharacter->setReflexTotal(jObj["reflexTotal"].toString());
+    newCharacter->setSpeed(jObj["speed"].toString());
+    newCharacter->setStrengthMiscPenalties(jObj["strengtMiscPenaltiesh"].toString());
+    newCharacter->setStrengthScorePlusAbilityMod(jObj["strengtScorePlusAbilityModifier"].toString());
+    newCharacter->setStrengthEnhancementBonus(jObj["strengthEnhancementBonus"].toString());
+    newCharacter->setStrengthMiscBonus(jObj["strengthMiscBonus"].toString());
+    newCharacter->setStrengthModifier(jObj["strengthModifier"].toString());
+    newCharacter->setStrengthTotal(jObj["strengthTotal"].toString());
+    newCharacter->setWillAbilityModifier(jObj["willAbilityModifier"].toString());
+    newCharacter->setWillBaseSave(jObj["willBaseSave"].toString());
+    newCharacter->setWillMagicModifier(jObj["willMagicModifier"].toString());
+    newCharacter->setWillMiscModifier(jObj["willMiscModifier"].toString());
+    newCharacter->setWillTempModifier(jObj["willTempModifier"].toString());
+    newCharacter->setWillTotal(jObj["willTotal"].toString());
+    newCharacter->setWisdomEnhancementBonus(jObj["wisdomEnhancementBonus"].toString());
+    newCharacter->setWisdomMiscBonus(jObj["wisdomMiscBonus"].toString());
+    newCharacter->setWisdomMiscPenalties(jObj["wisdomMiscPenalties"].toString());
+    newCharacter->setWisdomModifier(jObj["wisdomModifier"].toString());
+    newCharacter->setWisdomScorePlusAbilityMod(jObj["wisdomScorePlusAbilityModifier"].toString());
+    newCharacter->setWisdomTotal(jObj["wisdomTotal"].toString());
+    newCharacter->setXp(jObj["xp"].toString());
+    newCharacter->setMoney(jObj["money"].toString());
+
+
+    qInfo() << jObj["headMagicItem"].toString() << endl;
+    qInfo() << jObj["eyesMagicItem"].toString() << endl;
+    qInfo() << jObj["neckMagicItem"].toString() << endl;
+    qInfo() << jObj["shouldersMagicItem"].toString() << endl;
+    qInfo() << jObj["ring1MagicItem"].toString() << endl;
+
+
+    newCharacter->setHeadMagicItem(jObj["headMagicItem"].toString());
+    newCharacter->setEyesMagicItem(jObj["eyesMagicItem"].toString());
+    newCharacter->setNeckMagicItem(jObj["neckMagicItem"].toString());
+    newCharacter->setShouldersMagicItem(jObj["shouldersMagicItem"].toString());
+    newCharacter->setRing1MagicItem(jObj["ring1MagicItem"].toString());
+    newCharacter->setRing2MagicItem(jObj["ring2MagicItem"].toString());
+    newCharacter->setHandsMagicItem(jObj["handsMagicItem"].toString());
+    newCharacter->setArmsWristsMagicItem(jObj["armsWristsMagicItem"].toString());
+    newCharacter->setBodyMagicItem(jObj["bodyMagicItem"].toString());
+    newCharacter->setTorsoMagicItem(jObj["torsoMagicItem"].toString());
+    newCharacter->setWaistMagicItem(jObj["waistMagicItem"].toString());
+    newCharacter->setFeetMagicItem(jObj["feetMagicItem"].toString());
+
+
+
+
+
+
+
+}
+
+void MainWindow::saveMagicItemsWorn()
+{
+    qInfo() << "savemagicItemsWorn Clicked" << endl;
+ 
+    newCharacter->setHeadMagicItem(ui->headMagicItem->text());
+    newCharacter->setEyesMagicItem(ui->eyesMagicItem->text());
+    newCharacter->setNeckMagicItem(ui->neckMagicItem->text());
+    newCharacter->setShouldersMagicItem(ui->shouldersMagicItem->text());
+    newCharacter->setRing1MagicItem(ui->ring1MagicItem->text());
+    newCharacter->setRing2MagicItem(ui->ring2MagicItem->text());
+    newCharacter->setHandsMagicItem(ui->handsMagicItem->text());
+    newCharacter->setArmsWristsMagicItem(ui->armsWristsMagicItem->text());
+    newCharacter->setBodyMagicItem(ui->bodyMagicItem->text());
+    newCharacter->setTorsoMagicItem(ui->torsoMagicItem->text());
+    newCharacter->setWaistMagicItem(ui->waistMagicItem->text());
+    newCharacter->setFeetMagicItem(ui->feetMagicItem->text());
+    qInfo() <<"Head Magic Item" << newCharacter->getHeadMagicItem() << endl;
+}
+
+void MainWindow::saveToDB()
+{
+    sqlite->createTable();
 }
